@@ -32,7 +32,7 @@ def update_user(data):
         user.email = data['email']
         user.last_name = data['last_name']
         user.first_name = data['first_name']
-        user.password = data['password']
+        # user.password = data['password']
         user.modified_on = datetime.datetime.utcnow()
         save_changes(user)
         return user
