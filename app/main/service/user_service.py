@@ -13,7 +13,8 @@ def save_new_user(data):
             last_name=data['last_name'],
             first_name=data['first_name'],
             password=data['password'],
-            registered_on=datetime.datetime.utcnow()
+            created_on=datetime.datetime.utcnow(),
+            modified_on=datetime.datetime.utcnow()
         ))
         save_changes(new_user)
         return generate_token(new_user)
@@ -21,6 +22,24 @@ def save_new_user(data):
         response_object = {
             'status': 'fail',
             'message': 'User already exists. Please Log in.',
+        }
+        return response_object, 409
+
+
+def update_user(data):
+    user = get_a_user(data['id'])
+    if user:
+        user.email = data['email']
+        user.last_name = data['last_name']
+        user.first_name = data['first_name']
+        user.password = data['password']
+        user.modified_on = datetime.datetime.utcnow()
+        save_changes(user)
+        return user
+    else:
+        response_object = {
+            'status': 'fail',
+            'message': 'No user with provided id found.',
         }
         return response_object, 409
 
@@ -55,3 +74,11 @@ def generate_token(user):
 def save_changes(data):
     data.save()
 
+
+def delete_user(public_id):
+    user = get_a_user(public_id)
+    if user:
+        user.delete()
+        return True
+    else:
+        return False

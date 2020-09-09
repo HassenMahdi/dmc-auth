@@ -3,7 +3,7 @@ from flask_restplus import Resource
 
 from app.main.util.decorator import admin_token_required
 from ..util.dto import UserDto
-from ..service.user_service import save_new_user, get_all_users, get_a_user
+from ..service.user_service import save_new_user, get_all_users, get_a_user, delete_user, update_user
 
 api = UserDto.api
 _user = UserDto.user
@@ -26,6 +26,15 @@ class UserList(Resource):
         data = request.json
         return save_new_user(data=data)
 
+    @api.expect(_user, validate=True)
+    @api.response(201, 'User successfully updated.')
+    @api.doc('update user')
+    @api.marshal_with(_user)
+    def put(self):
+        """Creates a new User """
+        data = request.json
+        return update_user(data=data)
+
 
 @api.route('/<public_id>')
 @api.param('public_id', 'The User identifier')
@@ -40,6 +49,12 @@ class User(Resource):
             api.abort(404)
         else:
             return user
+
+    @api.doc('get a user')
+    @api.marshal_with(_user)
+    def get(self, public_id):
+        """get a user given its identifier"""
+        return delete_user(public_id)
 
 
 

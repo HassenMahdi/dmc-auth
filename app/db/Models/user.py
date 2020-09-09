@@ -16,6 +16,9 @@ class User(Document):
     first_name = None
     last_name = None
 
+    created_on = None
+    modified_on = None
+
     @property
     def password(self):
         raise AttributeError('password: write-only field')

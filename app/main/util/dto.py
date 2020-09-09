@@ -13,6 +13,8 @@ class UserDto:
         'last_name': fields.String(required=True, description='user email address'),
         'email': fields.String(required=True, description='user email address'),
         'password': fields.String(required=True, description='user password'),
+        'created_on': fields.DateTime(description='Created on'),
+        'modified_on': fields.DateTime(description='Modified on'),
         'id': NullableString(description='user Identifier')
     })
 
