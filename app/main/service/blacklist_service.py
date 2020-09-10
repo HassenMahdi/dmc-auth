@@ -5,6 +5,7 @@ def save_token(token):
     blacklist_token = BlacklistToken(token=token)
     try:
         # insert the token
+        blacklist_token.save()
         # db.session.add(blacklist_token)
         # db.session.commit()
         response_object = {

@@ -1,4 +1,5 @@
 from app.db.connection import get_next_sequence_value, mongo
+from app.main.util.strings import generate_id
 
 
 class Document:
@@ -25,7 +26,7 @@ class Document:
         return mongo.db[self.__TABLE__]
 
     def save(self , **kwargs):
-        self._id = self._id
+        self._id = self._id or generate_id()
         self._id = self.db(**kwargs).save(self.to_dict())
         return self
 
