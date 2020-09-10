@@ -50,9 +50,9 @@ class User(Resource):
         else:
             return user
 
-    @api.doc('get a user')
+    @api.doc('Delete User')
     @api.marshal_with(_user)
-    def get(self, public_id):
+    def delete(self, public_id):
         """get a user given its identifier"""
         return delete_user(public_id)
 
