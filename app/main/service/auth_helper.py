@@ -71,6 +71,8 @@ class Auth:
                     'data': {
                         'id': user.id,
                         'email': user.email,
+                        'last_name': user.last_name,
+                        'first_name': user.first_name,
                         'admin': True,
                         'registered_on': str(user.registered_on)
                     }

@@ -31,3 +31,15 @@ class LogoutAPI(Resource):
         # get auth token
         auth_header = request.headers.get('Authorization')
         return Auth.logout_user(data=auth_header)
+
+
+@api.route('/info')
+class InfoAPI(Resource):
+    """
+    Logout Resource
+    """
+    @api.doc('Get logged in user')
+    def get(self):
+        # get auth token
+        auth_header = request.headers.get('Authorization')
+        return Auth.get_logged_in_user(data=auth_header)
