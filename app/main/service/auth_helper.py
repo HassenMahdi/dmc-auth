@@ -74,7 +74,7 @@ class Auth:
                         'last_name': user.last_name,
                         'first_name': user.first_name,
                         'admin': True,
-                        'registered_on': str(user.registered_on)
+                        'created_on': str(user.created_on)
                     }
                 }
                 return response_object, 200
