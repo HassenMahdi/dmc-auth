@@ -73,8 +73,9 @@ class Auth:
                         'email': user.email,
                         'last_name': user.last_name,
                         'first_name': user.first_name,
-                        'admin': True,
-                        'created_on': str(user.created_on)
+                        'admin': user.admin,
+                        'created_on': str(user.created_on),
+                        'roles': user.roles
                     }
                 }
                 return response_object, 200

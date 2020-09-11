@@ -13,8 +13,8 @@ def save_new_user(data):
             last_name=data['last_name'],
             first_name=data['first_name'],
             password=data['password'],
-            admin = data.get('admin', False),
-            roles = data.get('roles', []),
+            admin=data.get('admin', False),
+            roles=data.get('roles', []),
             created_on=datetime.datetime.utcnow(),
             modified_on=datetime.datetime.utcnow()
         ))
@@ -34,8 +34,8 @@ def update_user(data):
         user.email = data['email']
         user.last_name = data['last_name']
         user.first_name = data['first_name']
-        user.admin = data.get('admin', False),
-        user.roles = data.get('roles', []),
+        user.admin = data.get('admin', False)
+        user.roles = data.get('roles', [])
         user.modified_on = datetime.datetime.utcnow()
         save_changes(user)
         return user

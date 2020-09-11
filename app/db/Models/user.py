@@ -73,6 +73,6 @@ class User(Document):
             return 'Invalid token. Please log in again.'
 
     def __repr__(self):
-        return "<User '{}'>".format(self.username)
+        return "<User '{} {}'>".format(self.first_name,self.last_name)
 
 
