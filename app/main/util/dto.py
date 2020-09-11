@@ -20,6 +20,8 @@ class UserDto:
         'password': NullableString(required=True, description='user password'),
         'created_on': NullableDatetime(description='Created on'),
         'modified_on': NullableDatetime(description='Modified on'),
+        'admin': fields.Boolean(description='Is User Admin'),
+        'roles': fields.List(fields.Raw, description='List of domain based access'),
         'id': NullableString(description='user Identifier')
     })
 
