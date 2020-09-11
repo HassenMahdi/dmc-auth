@@ -20,6 +20,7 @@ class UserList(Resource):
 
     @api.expect(_user, validate=True)
     @api.response(201, 'User successfully created.')
+    @admin_token_required
     @api.doc('create a new user')
     def post(self):
         """Creates a new User """
@@ -28,6 +29,7 @@ class UserList(Resource):
 
     @api.expect(_user, validate=True)
     @api.response(201, 'User successfully updated.')
+    @admin_token_required
     @api.doc('update user')
     @api.marshal_with(_user)
     def put(self):
@@ -42,6 +44,7 @@ class UserList(Resource):
 class User(Resource):
     @api.doc('get a user')
     @api.marshal_with(_user)
+    @admin_token_required
     def get(self, public_id):
         """get a user given its identifier"""
         user = get_a_user(public_id)
@@ -52,6 +55,7 @@ class User(Resource):
 
     @api.doc('Delete User')
     @api.marshal_with(_user)
+    @admin_token_required
     def delete(self, public_id):
         """get a user given its identifier"""
         return delete_user(public_id)
