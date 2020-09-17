@@ -20,7 +20,7 @@ class UserList(Resource):
 
     @api.expect(_user, validate=True)
     @api.response(201, 'User successfully created.')
-    @admin_token_required
+    # @admin_token_required
     @api.doc('create a new user')
     def post(self):
         """Creates a new User """
@@ -29,7 +29,7 @@ class UserList(Resource):
 
     @api.expect(_user, validate=True)
     @api.response(201, 'User successfully updated.')
-    @admin_token_required
+    # @admin_token_required
     @api.doc('update user')
     @api.marshal_with(_user)
     def put(self):

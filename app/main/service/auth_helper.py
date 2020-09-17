@@ -41,9 +41,9 @@ class Auth:
             auth_token = ''
         if auth_token:
             resp = User.decode_auth_token(auth_token)
-            if isinstance(resp, str):
+            if not isinstance(resp, str):
                 # mark the token as blacklisted
-                return save_token(token=auth_token)
+                return save_token(token=auth_token['token'])
             else:
                 response_object = {
                     'status': 'fail',
@@ -63,8 +63,8 @@ class Auth:
         auth_token = new_request.headers.get('Authorization')
         if auth_token:
             resp = User.decode_auth_token(auth_token)
-            if isinstance(resp, str):
-                user = User().load({'_id':resp})
+            if not isinstance(resp, str):
+                user = User().load({'_id':resp['token']})
                 # TODO CHANGE THIS
                 response_object = {
                     'status': 'success',
