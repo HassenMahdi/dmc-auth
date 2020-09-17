@@ -24,7 +24,6 @@ def send_reset_password_mail(user_email, request):
             'message': 'An email with a reset was sent link.',
         }
         return response_object, 200
-
     else:
         response_object = {
             'status': 'fail',
