@@ -66,7 +66,8 @@ class User(Resource):
 class UserPassword(Resource):
     @api.doc('Reset password request')
     def post(self):
-        return send_reset_password_mail('hassenmahdi77@gmail.com', request)\
+        email = request.json['email']
+        return send_reset_password_mail(email, request)\
 
     @api.doc('Reset password')
     def put(self):
