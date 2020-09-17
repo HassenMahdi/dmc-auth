@@ -2,7 +2,7 @@ from flask import current_app
 from flask_mail import Message
 
 from app.db.Models.user import User
-from app.mail import mail
+from app.mail import mail, get_reset_template
 
 
 def send_reset_password_mail(user_email, request):
@@ -34,6 +34,7 @@ def send_reset_password_mail(user_email, request):
 
 
 def get_reset_password_html(username,link, minutes, token):
-    return f"<h1>Hello {username}</h1> " \
-           f"<p>To reset your password click the <a href='{link}'>link<a> below</p>" \
-           f"<p style='color:red'>Link expires in {minutes} minutes</p>"
+    # return f"<h1>Hello {username}</h1> " \
+    #        f"<p>To reset your password click the <a href='{link}'>link<a> below</p>" \
+    #        f"<p style='color:red'>Link expires in {minutes} minutes</p>"
+    return get_reset_template()
