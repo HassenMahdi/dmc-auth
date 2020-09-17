@@ -11,6 +11,13 @@ class Config:
     DEBUG = False
     MONGO_URI = "mongodb://dcm-consmos:pUQRAZMYnTiYikWTxjcq7zQch27litMHCSJnHOu9XCssYxBqVRWmMpd8sSnd0G7w66dQ7GMS4UK8iAvOsoBGtw==@dcm-consmos.mongo.cosmos.azure.com:10255/dcm?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@dcm-consmos@"
 
+    MAIL_SERVER = 'smtp.office365.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    MAIL_USERNAME = 'adm.dcm@outlook.com'
+    MAIL_PASSWORD = 'DCMPASS.2020'
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

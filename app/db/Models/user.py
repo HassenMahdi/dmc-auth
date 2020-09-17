@@ -34,14 +34,14 @@ class User(Document):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
 
     @staticmethod
-    def encode_auth_token(user_id):
+    def encode_auth_token(user_id, days= 1, seconds=5, minutes= 0):
         """
         Generates the Auth Token
         :return: string
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days= days, seconds=seconds, minutes=minutes),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }

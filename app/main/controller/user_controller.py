@@ -2,8 +2,9 @@ from flask import request
 from flask_restplus import Resource
 
 from app.main.util.decorator import admin_token_required
+from ..service.mail_service import send_reset_password_mail
 from ..util.dto import UserDto
-from ..service.user_service import save_new_user, get_all_users, get_a_user, delete_user, update_user
+from ..service.user_service import save_new_user, get_all_users, get_a_user, delete_user, update_user, update_password
 
 api = UserDto.api
 _user = UserDto.user
@@ -60,5 +61,16 @@ class User(Resource):
         """get a user given its identifier"""
         return delete_user(public_id)
 
+
+@api.route('/password')
+class UserPassword(Resource):
+    @api.doc('Reset password request')
+    def post(self):
+        return send_reset_password_mail('hassenmahdi77@gmail.com', request)\
+
+    @api.doc('Reset password')
+    def put(self):
+        data = request.json
+        return update_password(data=data)
 
 

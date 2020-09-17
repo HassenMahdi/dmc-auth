@@ -2,6 +2,7 @@ import uuid
 import datetime
 
 from app.db.Models.user import User
+from app.main.service.blacklist_service import save_token
 
 
 def save_new_user(data):
@@ -85,3 +86,24 @@ def delete_user(public_id):
         return True
     else:
         return False
+
+
+def update_password(data):
+    token = data['token']
+    resp = User.decode_auth_token(token)
+    if not isinstance(resp, str):
+        user = User().load({'_id': resp['token']})
+        user.password = data['password']
+        user.modified_on = datetime.datetime.utcnow()
+        save_changes(user)
+        save_token(token)
+        return {
+            'status': 'success',
+            'message': 'Password Changed.',
+        }, 200
+    else:
+        response_object = {
+            'status': 'fail',
+            'message': 'No user with provided id found.',
+        }
+        return response_object, 409

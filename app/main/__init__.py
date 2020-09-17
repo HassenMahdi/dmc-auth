@@ -5,9 +5,9 @@ from flask_bcrypt import Bcrypt
 
 from .config import config_by_name
 from ..db.connection import mongo
+from ..mail import mail
 
 flask_bcrypt = Bcrypt()
-
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -15,6 +15,7 @@ def create_app(config_name):
 
     CORS(app)
 
+    mail.init_app(app)
     mongo.init_app(app)
 
     flask_bcrypt.init_app(app)
