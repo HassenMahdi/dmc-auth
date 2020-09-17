@@ -13,7 +13,7 @@ def send_reset_password_mail(user_email, request):
         msg.add_recipient(user_email)
         minutes = 30
         token = User.encode_auth_token(user.id, days= 0, seconds=0, minutes= minutes).decode()
-        link = f'{request.host_url}/reset/{token}'
+        link = f'http://{request.host}/reset/{token}'
         msg.html = get_reset_password_html(username=f"{user.first_name} {user.last_name}",link=link, minutes=minutes, token= token)
         msg.subject = 'Reset Password Request'
         msg.sender = 'adm.dcm@outlook.com'
