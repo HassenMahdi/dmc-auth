@@ -30,10 +30,7 @@ class LogoutAPI(Resource):
     def post(self):
         # get auth token
         auth_header = request.headers.get('Authorization')
-        try:
-            return Auth.logout_user(data=auth_header)
-        except:
-            return {'status':'success'}
+        return Auth.logout_user(data=auth_header)
 
 
 @api.route('/info')
