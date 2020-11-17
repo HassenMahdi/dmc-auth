@@ -17,6 +17,8 @@ class Config:
     MAIL_USE_SSL = False
     MAIL_USERNAME = 'adm.dcm@outlook.com'
     MAIL_PASSWORD = 'DCMPASS.2020'
+    
+    PORT = os.getenv('PORT', 5000)
 
 
 class DevelopmentConfig(Config):
